@@ -22,8 +22,8 @@ todos
   ];
 
   this.addNewTask = function(newTask) {
-    this.todos.unshift(newTask)
-  }
+    this.todos.unshift(newTask);
+  };
 })
 .controller("TodosCtlr", function($scope, todosService) {
   $scope.newTask = {};

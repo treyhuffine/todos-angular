@@ -1,19 +1,21 @@
 <div class="row">
   <div class="col-sm-6 new-item-container">
     <h3>New Item</h3>
-    <p>
-      <input type="checkbox" class="form-control" ng-model="allDone" ng-click="markAll()"/>
-      Mark All Done
-    </p>
     <div id="form-wrapper">
       <input type="text" class="task form-control" placeholder="Task" ng-model="newTask.action">
-      <input type="checkbox" ng-model="newTask.important">
-      <button class="new-task form-control" ng-click="addNewTask()">New task</button>
+      <input type="checkbox" ng-model="newTask.important" class="set-important"><p class="important-text">Set Important</p>
+      <button class="btn btn-success new-task form-control" ng-click="addNewTask()">New task</button>
     </div>
-    <button ng-click="clearCompleted()"
-    class="btn btn-danger btn-clear form-control">
-      <strong>Clear complete</strong>
-    </button>
+    <div class="btn-group button-container">
+      <button ng-click="markAll()"
+      class="btn btn-warning btn-clear">
+        <strong>Mark all</strong>
+      </button>
+      <button ng-click="clearCompleted()"
+      class="btn btn-danger btn-clear">
+        <strong>Clear complete</strong>
+      </button>
+    </div>
   </div>
   <div class="col-sm-6 reminders-container">
     <h3>Reminders</h3>
