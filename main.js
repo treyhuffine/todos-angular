@@ -13,12 +13,12 @@ todos
 })
 .service("todosService", function() {
   this.todos = [
-    {action: "do this first", done: false, color: "orange", newItem: false},
-    {action: "learn handlebars", done: true, color: "blue", funky: true, newItem: false},
-    {action: "learn angular", done: false, color: "green", important: true, newItem: false},
-    {action: "do this first", done: false, color: "orange", funky: true, newItem: false},
-    {action: "learn handlebars", done: true, color: "blue", newItem: false},
-    {action: "learn angular", done: false, color: "green", important: true, newItem: false}
+    {action: "do this first", done: false, newItem: false},
+    {action: "learn handlebars", done: true, funky: true, newItem: false},
+    {action: "learn angular", done: false, important: true, newItem: false},
+    {action: "do this first", done: false, funky: true, newItem: false},
+    {action: "learn handlebars", done: true, newItem: false},
+    {action: "learn angular", done: false, important: true, newItem: false}
   ];
 
   this.addNewTask = function(newTask) {
@@ -32,5 +32,6 @@ todos
     $scope.newTask.done = false;
     $scope.newItem = false;
     todosService.addNewTask($scope.newTask);
+    $scope.newTask = {};
   }
 });
