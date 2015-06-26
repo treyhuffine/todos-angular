@@ -20,7 +20,7 @@ todos
     {action: "learn handlebars", done: true, newItem: false},
     {action: "learn angular", done: false, important: true, newItem: false}
   ];
-
+  this.markAll = true;
   this.addNewTask = function(newTask) {
     if (newTask.action) {
       this.todos.unshift(newTask);
@@ -29,10 +29,19 @@ todos
   this.updateValue = function(newAction, index) {
     this.todos[index].action = newAction;
   };
+  this.toggleMarkAll = function() {
+    var that = this;
+    this.todos = this.todos.map(function(e) {
+      e.done = that.markAll;
+      return e;
+    });
+    this.markAll = this.markAll === false;
+  };
 })
 .controller("TodosCtlr", function($scope, todosService) {
   $scope.newTask = {};
   $scope.todos = todosService.todos;
+  $scope.markAll = todosService.markAll;
   $scope.addNewTask = function() {
     $scope.newTask.done = false;
     $scope.newItem = false;
@@ -45,4 +54,5 @@ todos
       todo.newItem = false;
     }
   };
+  $scope.toggleMarkAll = todosService.toggleMarkAll;
 });
