@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-sm-offset-3 col-sm-6">
+    <p>
+      <input type="checkbox" ng-model="allDone" ng-click="markAll()"/>
+      Mark All Done
+    </p>
+    <div id="form-wrapper">
+      <input type="text" class="task" placeholder="Task" ng-model="newTask.action">
+      <select class="color" ng-model="newTask.color">
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+        <option value="orange">Orange</option>
+      </select>
+      <input type="checkbox" ng-model="newTask.important">
+      <button class="new-task" ng-click="addNewTask()">New task</button>
+    </div>
+
+    <ul>
+
+      <li ng-repeat="todo in todos" ng-class="{ done: todo.done, q1: todo.important }"
+      ng-style="{'background-color': todo.color}" ng-dblclick="changeItem(todo)">
+        <input type="checkbox" ng-model="todo.done">
+          {{todo.action}}
+        <form ng-show="todo.newItem" ng-submit="changeText(todo)">
+          <input type="input" ng-model="newAction">
+          <button type="submit">Submit</button>
+        </form>
+      </li>
+
+    </ul>
+    <button ng-click="clearCompleted()">Clear complete</button>
+  </div>
+</div>
