@@ -40,6 +40,7 @@ ul {
 }
 .action-text {
   padding-left: 5px;
+  cursor: pointer;
 }
 .btn-clear {
   width: 50%;
@@ -63,4 +64,8 @@ ul {
 }
 .row h3 {
   border-bottom: 1px solid rgb(242, 242, 242);
+}
+.new-input {
+  margin-left: 5px;
+  width: 93%;
 }

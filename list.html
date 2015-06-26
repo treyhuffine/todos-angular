@@ -21,17 +21,19 @@
     <h3>Reminders</h3>
     <ul>
 
-      <li ng-repeat="todo in todos" ng-class="{ q1: todo.important }"
-      ng-style="{'background-color': todo.color}" ng-dblclick="changeItem(todo)"
+      <li ng-repeat="todo in todos track by $index" ng-class="{ q1: todo.important }"
+      ng-style="{'background-color': todo.color}" ng-dblclick="todo.newItem = true"
       class="todo-item">
         <input type="checkbox" ng-model="todo.done">
-          <span class="action-text" ng-class="{done: todo.done}">
+          <span class="action-text" ng-class="{done: todo.done}"
+                ng-dblclick="changeItem(todo)" ng-hide="todo.newItem">
             {{todo.action}}
           </span>
-        <form ng-show="todo.newItem" ng-submit="changeText(todo)">
-          <input type="input" ng-model="newAction">
-          <button type="submit">Submit</button>
-        </form>
+          <span>
+            <input ng-show="todo.newItem" type="input"
+                   ng-model="todo.action" class="new-input"
+                   ng-keyup="updateValue(todo, $event.keyCode, $index)">
+          </span>
       </li>
 
     </ul>
