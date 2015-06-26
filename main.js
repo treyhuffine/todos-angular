@@ -12,22 +12,25 @@ todos
     });
 })
 .service("todosService", function() {
-  this.todos = [
-    {action: "do this first", done: false, newItem: false},
-    {action: "learn handlebars", done: true, newItem: false},
-    {action: "learn angular", done: false, important: true, newItem: false},
-    {action: "do this first", done: false, newItem: false},
-    {action: "learn handlebars", done: true, newItem: false},
-    {action: "learn angular", done: false, important: true, newItem: false}
-  ];
+  if (localStorage["todosList"]) {
+    this.todos = JSON.parse(localStorage["todosList"]);
+  }
+  else {
+    this.todos = [
+      {action: "Sample task", done: false, newItem: false},
+    ];
+  }
   this.markAll = true;
+
   this.addNewTask = function(newTask) {
     if (newTask.action) {
       this.todos.unshift(newTask);
+      localStorage["todosList"] = JSON.stringify(this.todos);
     }
   };
   this.updateValue = function(newAction, index) {
     this.todos[index].action = newAction;
+    localStorage["todosList"] = JSON.stringify(this.todos);
   };
   this.toggleMarkAll = function() {
     var that = this;
@@ -36,6 +39,12 @@ todos
       return e;
     });
     this.markAll = this.markAll === false;
+  };
+  this.clearCompleted = function() {
+    this.todos = this.todos.filter(function(e) {
+      return !e.done;
+    });
+    localStorage["todosList"] = JSON.stringify(this.todos);
   };
 })
 .controller("TodosCtlr", function($scope, todosService) {
@@ -55,4 +64,5 @@ todos
     }
   };
   $scope.toggleMarkAll = todosService.toggleMarkAll;
+  $scope.clearCompleted = todosService.clearCompleted;
 });
